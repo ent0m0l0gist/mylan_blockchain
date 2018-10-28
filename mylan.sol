@@ -36,4 +36,21 @@ contract SupplyChain is Mylan {
         med.initialised = true;
         medicines.push(med) -1;
     }
+     struct stakeHolderInfo {
+        address stakeHolderAddress;
+        string stakeHolderType;
+    }
+    
+    mapping (address => stakeHolderInfo) stakeHolder;
+    address[]  warehouses;
+    address[]  distributors;
+    address[]  retialers;
+    address[]  consumers;
+    
+    function addWarehouse(address _warehouseAddress) onlyMylan public {
+        var newWarehouse = stakeHolder[_warehouseAddress];
+        newWarehouse.stakeHolderAddress = _warehouseAddress;
+        newWarehouse.stakeHolderType = "WAREHOUSE";
+        warehouses.push(_warehouseAddress) -1;
+    }
 }    
