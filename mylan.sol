@@ -60,4 +60,26 @@ contract SupplyChain is Mylan {
     function addDistributor(address _distributorAddress) onlyMylan public {
         distributors.push(_distributorAddress) -1;
     }
+
+    function sendToDistributor(address _distributorAddress, uint[] medicine_ids) public onlyWarehouse {
+        for(uint i= 0; i<medicine_ids.length; i++){
+            if(medicine_map[medicine_ids[i]].initialised==true && medicine_map[medicine_ids[i]].distributor == address(0)){
+                medicine_map[medicine_ids[i]].distributor = _distributorAddress;
+            }
+            else {
+                //add check
+            }
+        }
+    }
+    
+    function sendToWarehouse(address _WarehouseAddress, uint[] medicine_ids) public onlyMylan {
+        for(uint i= 0; i<medicine_ids.length; i++){
+            if(medicine_map[medicine_ids[i]].initialised==true && medicine_map[medicine_ids[i]].warehouse == address(0)){
+                medicine_map[medicine_ids[i]].warehouse = _WarehouseAddress;
+            }
+            else {
+                //add check
+            }
+        }
+    }
 }    
