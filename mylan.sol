@@ -24,4 +24,16 @@ contract SupplyChain is Mylan {
         address pharmacist;
         address person;
     }
+
+    mapping(uint => medicine) medicine_map;
+    medicine[] medicines;
+    medicine[5][] warehouseMedicines;
+    
+    function add_medicine(uint _ID, string _med_name) public onlyMylan {
+        var med = medicine_map[_ID];
+        med.ID = _ID;
+        med.med_name = _med_name;
+        med.initialised = true;
+        medicines.push(med) -1;
+    }
 }    
