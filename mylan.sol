@@ -53,4 +53,11 @@ contract SupplyChain is Mylan {
         newWarehouse.stakeHolderType = "WAREHOUSE";
         warehouses.push(_warehouseAddress) -1;
     }
+    function showWarehouses() view public returns (address[]) {
+        return warehouses;
+    }
+    
+    function addDistributor(address _distributorAddress) onlyMylan public {
+        distributors.push(_distributorAddress) -1;
+    }
 }    
