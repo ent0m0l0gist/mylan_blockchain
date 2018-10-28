@@ -82,4 +82,25 @@ contract SupplyChain is Mylan {
             }
         }
     }
+    modifier onlyWarehouse {
+    require(keccak256(stakeHolder[msg.sender].stakeHolderType)==keccak256("WAREHOUSE"));
+    _;
+    }
+    
+    function checkMed(uint _ID) public view returns (bool) {
+        if(medicine_map[_ID].initialised==false)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    
+    function checkMedWarehouse(uint _ID) public view returns (address) {
+       // return "Owner : " + owner + " distributor : " +medicine_map[_ID].distributor + " warehouse : " + medicine_map[_ID].warehouse;
+    
+        return medicine_map[_ID].warehouse;
+    }
 }    
